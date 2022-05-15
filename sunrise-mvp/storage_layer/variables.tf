@@ -45,14 +45,23 @@ variable admin_login {
     description = "Admin login (not Azure AD)."
 }
 
-
 variable azad_admin_login {
     type = string
     description = "Azure AD admin login."
 }
 
-
 variable azad_admin_object_id {
     type = string
     description = "Azure AD admin object id."
+}
+
+variable db_user_names {
+    type = list
+    description = "List of Azure AD user names."
+    default = ["fernando.zepeda@qurix.tech", 
+                "martens@qurix.tech", 
+                "andree.deboer@qurix.tech",
+                "konkevich@qurix.tech",
+                "lakshmi.chittem@qurix.tech",
+            ]
 }

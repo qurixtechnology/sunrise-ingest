@@ -1,3 +1,5 @@
+data azurerm_client_config client_db {}
+
 resource random_password password {
     length      = 20
     min_lower   = 5

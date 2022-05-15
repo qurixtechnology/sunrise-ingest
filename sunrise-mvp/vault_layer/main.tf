@@ -30,12 +30,14 @@ resource azurerm_key_vault kv {
 }
 
 resource azurerm_key_vault_secret secret_sql_admin {
+    depends_on = [azurerm_key_vault.kv]
     name = "secret-${var.environment}-${var.use_case}-mssql-admin"
     value = var.secret_sql_admin
     key_vault_id = azurerm_key_vault.kv.id
 }
 
 resource azurerm_key_vault_secret secret_sql_admin_pass {
+    depends_on = [azurerm_key_vault.kv]
     name = "secret-${var.environment}-${var.use_case}-mssql-admin-pass"
     value = var.secret_sql_admin_pass
     key_vault_id = azurerm_key_vault.kv.id

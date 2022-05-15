@@ -1,15 +1,19 @@
 terraform {
     
-    required_version = ">=0.12"
+    required_version = ">=0.13"
     
     required_providers {
-      azurerm = {
-          source = "hashicorp/azurerm"
-          version = "~>2.0"
-      }
-      random = {
-        source = "hashicorp/random"
-          version = "~> 3.1"
+        azurerm = {
+            source = "hashicorp/azurerm"
+            version = "~>2.0"
+        }
+        random = {
+            source = "hashicorp/random"
+            version = "~>3.1"
+        }
+        azuread = {
+            source = "hashicorp/azuread"
+            version = "~>2.22.0"
         }
     }
 }
@@ -17,11 +21,15 @@ terraform {
 # Providers
 provider azurerm {
     features {}
+    client_id = var.service_principal_id
+    client_secret = var.service_principal_secret
     subscription_id = var.subscription_id
     tenant_id = var.tenant_id
 }
 
-provider "random" {}
+provider random {}
+
+provider azuread {}
 
 # Modules
 module resource_group {
@@ -51,6 +59,17 @@ module vault_layer {
     secret_sql_admin_pass = module.storage_layer.secret_sql_admin_pass
 }
 
-# module compute_layer {}
 
+module compute_layer {
+    source = "./compute_layer"
+    use_case = var.use_case
+    environment = var.environment
+    resource_group_name = module.resource_group.rg_name
+    location = var.location
+    aks_ssh_key = var.aks_ssh_key
+    aks_dns_prefix = var.aks_dns_prefix
+    azad_admin_object_id = var.azad_admin_object_id
+}
+
+# module ingest_layer {}
 # module serve_layer {} 
