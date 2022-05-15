@@ -31,7 +31,16 @@ variable location {
         ])
         error_message = "Location is not valid."
     }
-    
+}
+
+variable service_principal_id {
+    type = string
+    description = "Id (appId) of the service principal."
+}
+
+variable service_principal_secret {
+    type = string
+    description = "Secret of the service principal."
 }
 
 variable subscription_id {
@@ -52,4 +61,14 @@ variable azad_admin_login {
 variable azad_admin_object_id {
     type = string
     description = "Azure AD admin object id."
+}
+
+variable aks_ssh_key {
+    type = string
+    default = "ssh public key for AKS."
+    sensitive = true 
+}
+
+variable aks_dns_prefix {
+    type = string
 }
