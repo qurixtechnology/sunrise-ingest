@@ -20,6 +20,10 @@ terraform {
             
         }
     }
+    
+    backend "azurerm" {
+        key = "terraform.tfstate"
+    }
 }
 
 # Providers
