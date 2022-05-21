@@ -11,13 +11,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Terraform Init and plan'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@feature-terraform
-        with:
-          secrets: inherit
+    uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@feature-terraform      
 
 
 
