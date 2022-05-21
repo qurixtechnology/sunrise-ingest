@@ -15,6 +15,10 @@ terraform {
             source = "hashicorp/azuread"
             version = "~>2.22.0"
         }
+
+        kubernetes = {
+            
+        }
     }
 }
 
@@ -29,7 +33,9 @@ provider azurerm {
 
 provider random {}
 
-provider azuread {}
+provider azuread {
+    tenant_id = var.tenant_id 
+}
 
 # Modules
 module resource_group {

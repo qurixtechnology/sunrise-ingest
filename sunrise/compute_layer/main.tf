@@ -2,21 +2,27 @@ data "azuread_client_config" "current" {}
 
 resource azuread_application aks_app {
     display_name = "sp-aks-${var.environment}-${var.use_case}-manager"
-    owners =  [data.azuread_client_config.current.object_id, var.azad_admin_object_id]
+    owners =  [data.azuread_client_config.current.object_id]
 }   
 
 resource azuread_service_principal aks_sp {
   application_id               = azuread_application.aks_app.application_id
   app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id, var.azad_admin_object_id]
+  owners                       = [data.azuread_client_config.current.object_id]
+  provisioner "local-exec" {
+        command = "sleep 10"
+    }
 }
 
 resource azuread_service_principal_password aks_sp_password {
     service_principal_id = azuread_service_principal.aks_sp.object_id
+
+    provisioner "local-exec" {
+        command = "sleep 10"
+        }
 }
 
 resource azurerm_kubernetes_cluster aks {
-
     name = "aks-${var.environment}-${var.use_case}"
     location = var.location
     resource_group_name = var.resource_group_name
@@ -62,10 +68,25 @@ resource azurerm_kubernetes_cluster aks {
         }
 
     }
-    
+    node_resource_group = "aks-node-rg-${var.environment}-${var.use_case}"
+
     tags = {
         env = var.environment
         use_case = var.use_case
     } 
 
+}
+
+# Define Kubernetes Objects
+provider kubernetes {
+    host = azurerm_kubernetes_cluster.aks.kube_config.0.host
+    client_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_certificate)
+    client_key = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_key)
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.cluster_ca_certificate)
+}
+
+resource kubernetes_namespace k8s_ns_airflow {
+    metadata {
+        name = "airflow"
+    }
 }
