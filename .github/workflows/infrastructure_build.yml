@@ -4,13 +4,14 @@ on:
     branches:
       - main
       - 'feature/**'
+
   pull_request:
     branches:
       - main
 
 jobs:
   terraform:
-    name: 'Terraform Init and Plan'
+    name: 'Terraform Init and plan'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
