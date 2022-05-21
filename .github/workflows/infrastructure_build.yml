@@ -11,7 +11,7 @@ on:
 
 jobs:
   terraform:
-    uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@main
-
+    uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@fix/change-name
+                                                           
 
 
