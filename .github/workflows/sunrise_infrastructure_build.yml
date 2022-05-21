@@ -1,0 +1,21 @@
+name: 'Sunrise Infrastructure Build'
+on:
+  push:
+    branches:
+      - 'feature/**'
+    paths:
+      - 'sunrise/**'
+      - '.github/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  call_workflow:
+    uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@fix/change-name
+    with:
+      build_path: sunrise
+    secrets: inherit
+                                                           
+
+
