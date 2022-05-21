@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: github.com/qurix/base-workflows/.github/workflows/build_terraform_plan@feature-terraform
+      - uses: github.com/qurixtechnology/base-workflows/.github/workflows/build_terraform_plan@feature-terraform
         with:
           secrets: inherit
 
