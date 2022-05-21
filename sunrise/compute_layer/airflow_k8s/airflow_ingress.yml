@@ -9,7 +9,7 @@ spec:
   rules:
   - http:
       paths:
-        - path: /airflow 
+        - path: /airflow
           pathType: Prefix
           backend:
             service:
