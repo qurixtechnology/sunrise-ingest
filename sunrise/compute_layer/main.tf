@@ -8,7 +8,7 @@ resource azurerm_kubernetes_cluster aks {
     default_node_pool {
         name = "agentpool"
         node_count = 1
-        vm_size = "Standard_E4s_v3"
+        vm_size = "Standard_D2a_v4"
         type = "VirtualMachineScaleSets"
         os_disk_size_gb = 250
     }
