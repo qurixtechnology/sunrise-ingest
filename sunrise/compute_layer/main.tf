@@ -1,27 +1,3 @@
-data "azuread_client_config" "current" {}
-
-resource azuread_application aks_app {
-    display_name = "sp-aks-${var.environment}-${var.use_case}-manager"
-    owners =  [data.azuread_client_config.current.object_id]
-}   
-
-resource azuread_service_principal aks_sp {
-  application_id               = azuread_application.aks_app.application_id
-  app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
-  provisioner "local-exec" {
-        command = "sleep 10"
-    }
-}
-
-resource azuread_service_principal_password aks_sp_password {
-    service_principal_id = azuread_service_principal.aks_sp.object_id
-
-    provisioner "local-exec" {
-        command = "sleep 10"
-        }
-}
-
 resource azurerm_kubernetes_cluster aks {
     name = "aks-${var.environment}-${var.use_case}"
     location = var.location
@@ -38,8 +14,8 @@ resource azurerm_kubernetes_cluster aks {
     }
 
     service_principal {
-        client_id = azuread_service_principal.aks_sp.application_id 
-        client_secret = azuread_service_principal_password.aks_sp_password.value
+        client_id = var.service_principal_id
+        client_secret = var.service_principal_secret
     }
 
     linux_profile {
