@@ -67,7 +67,7 @@ module "vault_layer" {
   secret_sql_admin_pass = module.storage_layer.secret_sql_admin_pass
 }
 
-
+/*
 module "compute_layer" {
   source               = "./compute_layer"
   use_case             = var.use_case
@@ -78,6 +78,7 @@ module "compute_layer" {
   aks_dns_prefix       = var.aks_dns_prefix
   azad_admin_object_id = var.azad_admin_object_id
 }
+*/
 
 # module ingest_layer {}
 # module serve_layer {} 
