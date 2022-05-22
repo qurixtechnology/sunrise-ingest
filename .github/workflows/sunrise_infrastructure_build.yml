@@ -10,19 +10,13 @@ on:
     branches:
       - main
 
-env:
-  use_case: sunrise-core
-  environment: dev
-  generic_id: sunrise
-
 jobs:
-  call_reusable_workflow:
-    name: 'Call Terraform plan workflow'
+  call_reusable_workflow:    
     uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@fix/change-name
     with:
-      build_path: ${{ env.generic_id }}
-      environment: ${{ env.environment }}
-      use_case: ${{ env.use_case }}
-      aks_dns_prefix: ${{ env.generic_id }}
+      build_path: sunrise
+      environment: dev
+      use_case: sunrise-core
+      aks_dns_prefix: sunrise
     secrets: inherit
 
