@@ -17,4 +17,3 @@ jobs:
       build_path: sunrise
     secrets: inherit
 
-
