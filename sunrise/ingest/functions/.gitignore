@@ -5,6 +5,9 @@ local.settings.json
 # Local
 Makefile
 
+# Python
+*/__pycache__
+
 # Pytest
 .pytest_cache
 test-output.xml
