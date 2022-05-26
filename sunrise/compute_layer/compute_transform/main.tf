@@ -50,19 +50,9 @@ resource azurerm_kubernetes_cluster aks {
         env = var.environment
         use_case = var.use_case
     } 
-
-}
-
-# Define Kubernetes Objects
-provider kubernetes {
-    host = azurerm_kubernetes_cluster.aks.kube_config.0.host
-    client_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_certificate)
-    client_key = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_key)
-    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.cluster_ca_certificate)
-}
-
-resource kubernetes_namespace k8s_ns_airflow {
-    metadata {
-        name = "airflow"
+    
+    lifecycle {
+        prevent_destroy = true
+        ignore_changes = [network_profile]
     }
 }
