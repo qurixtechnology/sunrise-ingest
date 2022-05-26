@@ -4,17 +4,18 @@ on:
     branches:
       - 'main'
     paths:
-      - 'sunrise/**'
-      - '.github/**'
+      - 'sunrise/terraform/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'sunrise/terraform/**'
 
 jobs:
   call_reusable_workflow:    
     uses: qurixtechnology/base-workflows/.github/workflows/build_deploy_terraform.yml@main
     with:
-      build_path: sunrise
+      build_path: sunrise/terraform
       environment: dev
       use_case: sunrise-core
       aks_dns_prefix: sunrise
