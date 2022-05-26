@@ -1,0 +1,19 @@
+name: 'Build Python Function'
+on:
+  push:
+    branches:
+      - 'feature/**'
+    paths:
+      - 'sunrise/ingest/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'sunrise/ingest/**'
+
+jobs:
+  call_reusable_workflow:    
+    uses: qurixtechnology/base-workflows/.github/workflows/do_python_tests.yml@main
+    with:
+      python_version: 3.8
+      build_path: ./sunrise/ingest/functions
