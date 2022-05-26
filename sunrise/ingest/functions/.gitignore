@@ -6,6 +6,7 @@ local.settings.json
 Makefile
 
 # Python
+__pycache__/
 */__pycache__
 
 # Pytest
