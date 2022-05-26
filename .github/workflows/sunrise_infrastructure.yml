@@ -1,8 +1,8 @@
-name: 'Sunrise Build'
+name: 'Sunrise Infrastructure'
 on:
   push:
     branches:
-      - 'feature/**'
+      - 'main'
     paths:
       - 'sunrise/**'
       - '.github/**'
@@ -12,7 +12,7 @@ on:
 
 jobs:
   call_reusable_workflow:    
-    uses: qurixtechnology/base-workflows/.github/workflows/build_terraform_plan.yml@fix/change-name
+    uses: qurixtechnology/base-workflows/.github/workflows/build_deploy_terraform.yml
     with:
       build_path: sunrise
       environment: dev
