@@ -1,0 +1,10 @@
+# Development
+.venv
+local.settings.json
+
+# Local
+Makefile
+
+# Pytest
+.pytest_cache
+test-output.xml
