@@ -1,5 +1,7 @@
 # qurix Infrastructure
 
+[![Sunrise Infrastructure](https://github.com/qurixtechnology/infrastructure/actions/workflows/sunrise_infrastructure.yml/badge.svg)](https://github.com/qurixtechnology/infrastructure/actions/workflows/sunrise_infrastructure.yml)
+
 qurix IaaC Terraform modules.
 
 - Initialize an Azure remote backend
