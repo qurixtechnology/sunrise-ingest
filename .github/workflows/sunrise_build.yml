@@ -1,4 +1,4 @@
-name: 'Sunrise Infrastructure Build'
+name: 'Sunrise Build'
 on:
   push:
     branches:
@@ -19,4 +19,3 @@ jobs:
       use_case: sunrise-core
       aks_dns_prefix: sunrise
     secrets: inherit
-

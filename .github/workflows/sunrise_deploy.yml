@@ -1,0 +1,21 @@
+name: 'Sunrise Build'
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'sunrise/**'
+      - '.github/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  call_reusable_workflow:    
+    uses: qurixtechnology/base-workflows/.github/workflows/build_deploy_terraform.yml
+    with:
+      build_path: sunrise
+      environment: dev
+      use_case: sunrise-core
+      aks_dns_prefix: sunrise
+    secrets: inherit
