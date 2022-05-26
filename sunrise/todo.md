@@ -1,5 +1,0 @@
-- CI/CD with github actions
-- data lake
-- remote backend (blob storage)
-- Kubernetes
-- Airflow with Kubernetes Executor
