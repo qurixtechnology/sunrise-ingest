@@ -1,16 +1,16 @@
 
-variable environment {
+variable "environment" {
   type = string
 }
 
-variable resource_group_name {
+variable "resource_group_name" {
   type = string
 }
 
-variable location {
+variable "location" {
   type = string
 }
 
-variable use_case {
+variable "use_case" {
   type = string
 }
