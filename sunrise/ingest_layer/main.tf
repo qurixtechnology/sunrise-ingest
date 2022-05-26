@@ -1,6 +1,6 @@
 
 resource "azurerm_storage_account" "sa" {
-  name                      = "sa${var.environment}ingest${var.use_case}"
+  name                      = "sa${var.environment}ingest"
   resource_group_name       = var.resource_group_name
   location                  = var.location
   account_tier              = "Standard"
