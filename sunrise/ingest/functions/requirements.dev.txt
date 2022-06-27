@@ -4,3 +4,4 @@ pytest-cov==2.12.1
 pytest-mock==3.6.1
 isort==5.10.1
 python-dotenv==0.20.0
+pyodbc==4.0.32
