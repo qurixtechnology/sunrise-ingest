@@ -5,7 +5,9 @@ from common.utils.datatable import DataTable, DataColumn
 @pytest.fixture
 def asset_table() -> DataTable:
     cols = [DataColumn("sample_col", "VARCHAR(100)")]
-    test_table = DataTable(name="test_table", schema="test_schema", columns=cols)
+    test_table = DataTable(
+        name="test_table", schema="test_schema", columns=cols
+    )
     return test_table
 
 

@@ -18,10 +18,14 @@ class RestClientBase(ABC):
 
 
 class RestClient(RestClientBase):
-    def get(self, url: str, headers: Dict, data: Optional[Dict] = None) -> Union[Dict, List]:
+    def get(
+        self, url: str, headers: Dict, data: Optional[Dict] = None
+    ) -> Union[Dict, List]:
         response = requests.get(url, headers=headers, json=data)
         return response.json()
 
-    def post(self, url: str, headers: Dict, data: Optional[Dict] = None) -> Dict:
+    def post(
+        self, url: str, headers: Dict, data: Optional[Dict] = None
+    ) -> Dict:
         response = requests.post(url, headers=headers, json=data)
         return response.json()

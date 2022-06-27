@@ -32,22 +32,35 @@ def main():
         pw=sql_credentials["SQL_PASS"],
     )
     table = processor.load_sql_table(connection=db_client.connection)
-    final_table = processor.filter_columns(table, [x.name for x in table_to_import.scd])
-    unique_records_from_scd = [ROW_STAGE_LINKEDIN_FOLLOWERS(**row) for row in final_table]
+    final_table = processor.filter_columns(
+        table, [x.name for x in table_to_import.scd]
+    )
+    unique_records_from_scd = [
+        ROW_STAGE_LINKEDIN_FOLLOWERS(**row) for row in final_table
+    ]
 
     logging.info(f"Existing records in database {len(unique_records_from_scd)}")
 
-    content = processor.load_local_json("local/linkedin_followers_2022-06-24.json")
+    content = processor.load_local_json(
+        "local/linkedin_followers_2022-06-24.json"
+    )
 
     logging.info(f"Possible new records from content {len(content)}")
 
     content = processor.filter_columns(
-        content, [x.source_name for x in table_to_import.columns if x.slowly_changing_dimension]
+        content,
+        [
+            x.source_name
+            for x in table_to_import.columns
+            if x.slowly_changing_dimension
+        ],
     )
 
     # Change names of imported content
     map_import_db_col = {
-        x.source_name: x.name for x in table_to_import.columns if x.slowly_changing_dimension
+        x.source_name: x.name
+        for x in table_to_import.columns
+        if x.slowly_changing_dimension
     }
 
     new_content = []
@@ -57,7 +70,9 @@ def main():
             new_dict[map_import_db_col[key]] = value
             new_content.append(new_dict)
 
-    hashable_content = [ROW_STAGE_LINKEDIN_FOLLOWERS(**row) for row in new_content]
+    hashable_content = [
+        ROW_STAGE_LINKEDIN_FOLLOWERS(**row) for row in new_content
+    ]
 
     # Naive
     new_records = []
@@ -73,7 +88,9 @@ def main():
 
     # Optimized: hashable dataclasses
     hashable_try_subset = set(unique_records_from_scd) - set(hashable_content)
-    dump_file([asdict(x) for x in hashable_try_subset], Path("local/hashable.json"))
+    dump_file(
+        [asdict(x) for x in hashable_try_subset], Path("local/hashable.json")
+    )
     logging.info(f"Hashable try: {len(hashable_try_subset)}")
 
     return None

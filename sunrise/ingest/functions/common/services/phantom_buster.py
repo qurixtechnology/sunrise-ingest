@@ -33,7 +33,9 @@ class PhantomBusterClient(RestClient):
     def launch(self, agent_id: str) -> Dict:
         agent_data = {"id": agent_id}
         url = f"{self._base_url}/agents/launch"
-        result = self.post(url=url, headers=self._get_headers(), data=agent_data)
+        result = self.post(
+            url=url, headers=self._get_headers(), data=agent_data
+        )
         return result
 
     def get_container_output(self, container_id: str) -> Optional[Dict]:

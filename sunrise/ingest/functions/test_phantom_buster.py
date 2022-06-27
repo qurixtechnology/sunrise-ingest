@@ -4,7 +4,10 @@ from common.services.phantom_buster import PhantomBusterClient
 from datetime import datetime
 import json
 import logging
-from common.sources.phantombuster import LINKEDIN_FOLLOWERS_SOURCE, SALES_NAVIGATOR_SOURCE
+from common.sources.phantombuster import (
+    LINKEDIN_FOLLOWERS_SOURCE,
+    SALES_NAVIGATOR_SOURCE,
+)
 
 if __name__ == "__main__":
     init_logger(azure=False)
@@ -16,7 +19,9 @@ if __name__ == "__main__":
         org_folder = source.organization_folder
 
         client = PhantomBusterClient(
-            api_key=config.PHANTOM_BUSTER_API_KEY, api_version="v2", organization_id=org_folder
+            api_key=config.PHANTOM_BUSTER_API_KEY,
+            api_version="v2",
+            organization_id=org_folder,
         )
         try:
             result = client.launch(agent_id=agent_id)
@@ -29,7 +34,11 @@ if __name__ == "__main__":
 
         document_id = datetime.strftime(datetime.now(), "%Y-%m-%d")
 
-        with open(f"local/{source.name}_{document_id}.json", "w", encoding="utf-8") as f:
+        with open(
+            f"local/{source.name}_{document_id}.json", "w", encoding="utf-8"
+        ) as f:
             json.dump(result_json, f, indent=4, ensure_ascii=False)
 
-        logging.info(f"Document {document_id} was stored in local/{source.name}_{document_id}")
+        logging.info(
+            f"Document {document_id} was stored in local/{source.name}_{document_id}"
+        )

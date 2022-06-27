@@ -42,7 +42,9 @@ class SqlServerClient:
             try:
                 self.log.info(f"Try {retry_count} to connect")
                 conn = pyodbc.connect(
-                    self.connection_string, autocommit=True, timeout=self._CONNECTION_TIMEOUT
+                    self.connection_string,
+                    autocommit=True,
+                    timeout=self._CONNECTION_TIMEOUT,
                 )
                 self.log.info("Connected!")
                 with conn.cursor() as cursor:
@@ -65,7 +67,9 @@ class SqlServerClient:
             try:
                 logging.info(f"Try number {retry_count}")
                 conn = pyodbc.connect(
-                    self.connection_string, autocommit=True, timeout=self._CONNECTION_TIMEOUT
+                    self.connection_string,
+                    autocommit=True,
+                    timeout=self._CONNECTION_TIMEOUT,
                 )
                 with conn.cursor() as cursor:
                     if wake_up:

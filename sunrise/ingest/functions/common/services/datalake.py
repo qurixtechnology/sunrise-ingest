@@ -5,7 +5,11 @@ from typing import Any, List, Optional, Union
 
 from azure.core.exceptions import ResourceNotFoundError
 from azure.storage.filedatalake import DataLakeServiceClient
-from azure.identity import ManagedIdentityCredential, AzureCliCredential, ChainedTokenCredential
+from azure.identity import (
+    ManagedIdentityCredential,
+    AzureCliCredential,
+    ChainedTokenCredential,
+)
 
 
 class DataLakeClient:
@@ -30,11 +34,15 @@ class DataLakeClient:
             connection_string=connection_string,
             account_name=None,
         )
-        client.client = DataLakeServiceClient.from_connection_string(conn_str=connection_string)
+        client.client = DataLakeServiceClient.from_connection_string(
+            conn_str=connection_string
+        )
         return client
 
     @classmethod
-    def create_with_az_aad_auth(cls, container_name: str, account_name: str) -> "DataLakeClient":
+    def create_with_az_aad_auth(
+        cls, container_name: str, account_name: str
+    ) -> "DataLakeClient":
         client = cls(
             container_name=container_name,
             connection_string=None,
@@ -51,12 +59,16 @@ class DataLakeClient:
         # use the cli credentials to allow local access to cloud resources.
         azure_cli_credential = AzureCliCredential()
 
-        credential_chain = ChainedTokenCredential(managed_identity_credential, azure_cli_credential)
+        credential_chain = ChainedTokenCredential(
+            managed_identity_credential, azure_cli_credential
+        )
 
         account_url = f"https://{account_name}.dfs.core.windows.net/"
 
         client.container_name = container_name
-        client.client = DataLakeServiceClient(account_url=account_url, credential=credential_chain)
+        client.client = DataLakeServiceClient(
+            account_url=account_url, credential=credential_chain
+        )
         return client
 
     def list_directory(
@@ -99,7 +111,9 @@ class DataLakeClient:
 
         except ResourceNotFoundError as e:
             logging.warning(e)
-            logging.warning(f"Container: {self.container_name} Path: {dir_path}")
+            logging.warning(
+                f"Container: {self.container_name} Path: {dir_path}"
+            )
 
         if file_ending is not None:
             tmp = [item for item in result if item.name.endswith(file_ending)]
@@ -147,7 +161,11 @@ class DataLakeClient:
         return result
 
     def upload_file_content(
-        self, content: Any, file_path: str = None, dir_path: str = None, file_name: str = None
+        self,
+        content: Any,
+        file_path: str = None,
+        dir_path: str = None,
+        file_name: str = None,
     ) -> None:
         """Uploads the given content as a new file on the Data Lake.
 
@@ -174,7 +192,9 @@ class DataLakeClient:
             source_file_path (str): Path to the file to copy-
             target_file_path (str): Path to the new file location.
         """
-        logging.info(f"Copy file from: {source_file_path} to {target_file_path}")
+        logging.info(
+            f"Copy file from: {source_file_path} to {target_file_path}"
+        )
 
         source_dir_path = posixpath.split(source_file_path)[0]
         source_file_name = posixpath.split(source_file_path)[1]
@@ -182,12 +202,20 @@ class DataLakeClient:
         target_dir_path = posixpath.split(target_file_path)[0]
         target_file_name = posixpath.split(target_file_path)[1]
 
-        source_fs_client = self.client.get_file_system_client(self.container_name)
-        source_dir_client = source_fs_client.get_directory_client(source_dir_path)
+        source_fs_client = self.client.get_file_system_client(
+            self.container_name
+        )
+        source_dir_client = source_fs_client.get_directory_client(
+            source_dir_path
+        )
         source_file_client = source_dir_client.get_file_client(source_file_name)
 
-        target_fs_client = self.client.get_file_system_client(self.container_name)
-        target_dir_client = target_fs_client.get_directory_client(target_dir_path)
+        target_fs_client = self.client.get_file_system_client(
+            self.container_name
+        )
+        target_dir_client = target_fs_client.get_directory_client(
+            target_dir_path
+        )
         target_file_client = target_dir_client.get_file_client(target_file_name)
 
         file_content = source_file_client.download_file().readall()

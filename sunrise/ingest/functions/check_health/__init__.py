@@ -12,5 +12,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         func.HttpResponse: an Azure response object
     """
     return func.HttpResponse(
-        status_code=200, body=f"The Service {AZURE_FUNCTION_APP_NAME} is healthy!"
+        status_code=200,
+        body=f"The Service {AZURE_FUNCTION_APP_NAME} is healthy!",
     )

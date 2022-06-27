@@ -9,16 +9,25 @@ def utility_test_table(target_table: Any, input_dict: Dict[str, Any]):
     assert all([isinstance(x, DataColumn) for x in target_table.columns])
     assert target_table.db_name == input_dict["table_name"]
     assert len(target_table.columns) == input_dict["columns"]
-    assert len([x for x in target_table.columns if x.type == "INT"]) == input_dict["int_cols"]
     assert (
-        len([x for x in target_table.columns if "VARCHAR" in x.type]) == input_dict["varchar_cols"]
+        len([x for x in target_table.columns if x.type == "INT"])
+        == input_dict["int_cols"]
     )
-    assert len([x for x in target_table.columns if x.type == "DATETIME"]) == input_dict["date_cols"]
+    assert (
+        len([x for x in target_table.columns if "VARCHAR" in x.type])
+        == input_dict["varchar_cols"]
+    )
+    assert (
+        len([x for x in target_table.columns if x.type == "DATETIME"])
+        == input_dict["date_cols"]
+    )
     assert (
         len([x for x in target_table.columns if x.default_value != ""])
         == input_dict["default_cols"]
     )
-    assert len(target_table.import_columns) == input_dict["amount_imported_cols"]
+    assert (
+        len(target_table.import_columns) == input_dict["amount_imported_cols"]
+    )
 
 
 def test_stage_sales_navigator_table():

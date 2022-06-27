@@ -33,15 +33,26 @@ class DeltaProcessor(BaseProcessor):
             content = json.load(f)
         return content
 
-    def load_dict_to_sql(self, content: List, import_cols: bool = True) -> List[str]:
+    def load_dict_to_sql(
+        self, content: List, import_cols: bool = True
+    ) -> List[str]:
         sql_list = []
         for content_dict in content:
             placeholders = ", ".join(
-                [f"""'{str(element).replace("'", "''")}'""" for element in content_dict.values()]
+                [
+                    f"""'{str(element).replace("'", "''")}'"""
+                    for element in content_dict.values()
+                ]
             )
             columns = ", ".join(content_dict.keys())
             if import_cols:
-                columns = ", ".join([x.name for x in self._table.columns if x.default_value == ""])
+                columns = ", ".join(
+                    [
+                        x.name
+                        for x in self._table.columns
+                        if x.default_value == ""
+                    ]
+                )
             sql = f"INSERT INTO {self._table.db_name} ( {columns} ) VALUES ( N'{placeholders}' )"
             sql_list.append(sql)
         return sql_list
@@ -60,6 +71,10 @@ class DeltaProcessor(BaseProcessor):
             columns = [column[0] for column in cursor.description]
         return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
-    def run(self, content: List[Dict], connection: pyodbc.Connection) -> List[DataclassProtocol]:
+    def run(
+        self, content: List[Dict], connection: pyodbc.Connection
+    ) -> List[DataclassProtocol]:
         base_table = self.load_sql_table(connection)
-        base_table_scd = self.filter_columns(base_table, [x.name for x in self._table.scd])
+        base_table_scd = self.filter_columns(
+            base_table, [x.name for x in self._table.scd]
+        )

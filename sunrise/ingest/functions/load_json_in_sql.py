@@ -14,7 +14,9 @@ sql_credentials = {
 }
 
 SOURCES = {
-    "LINKEDIN_FOLLOWERS": {"file_path": "local/linkedin_followers_2022-06-16.json"},
+    "LINKEDIN_FOLLOWERS": {
+        "file_path": "local/linkedin_followers_2022-06-16.json"
+    },
     "SALES_NAVIGATOR": {"file_path": "local/sales_navigator_2022-06-16.json"},
     "COMPANY_FOLLOWERS": {"file_path": ""},
 }
