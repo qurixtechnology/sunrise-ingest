@@ -44,6 +44,5 @@ resource "azurerm_function_app" "function" {
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME"       = "Python"
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.appinsights.instrumentation_key
-    # More environment variables
   }
 }
