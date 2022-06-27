@@ -2,7 +2,7 @@ import logging
 import pyodbc
 import time
 
-from typing import List, Any
+from typing import Any
 
 
 class SqlServerClient:
@@ -79,7 +79,7 @@ class SqlServerClient:
                             logging.info(row[0])
                             row = cursor.fetchone()
                         return None
-                    logging.info(f"Executing sql...")
+                    logging.info("Executing sql...")
                     res = cursor.execute(sql_statement)
                     retry_flag = False
                     logging.info("Success!")

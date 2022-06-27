@@ -1,4 +1,3 @@
-from os import stat
 from typing import Dict, List, Iterable, Protocol, Optional, Callable
 import pyodbc
 from common.utils.datatable import DataTable
@@ -53,7 +52,10 @@ class DeltaProcessor(BaseProcessor):
                         if x.default_value == ""
                     ]
                 )
-            sql = f"INSERT INTO {self._table.db_name} ( {columns} ) VALUES ( N'{placeholders}' )"
+            sql = (
+                f"INSERT INTO {self._table.db_name} ( {columns} )"
+                + f"VALUES ( N'{placeholders}' )"
+            )
             sql_list.append(sql)
         return sql_list
 
@@ -74,7 +76,4 @@ class DeltaProcessor(BaseProcessor):
     def run(
         self, content: List[Dict], connection: pyodbc.Connection
     ) -> List[DataclassProtocol]:
-        base_table = self.load_sql_table(connection)
-        base_table_scd = self.filter_columns(
-            base_table, [x.name for x in self._table.scd]
-        )
+        pass

@@ -32,7 +32,10 @@ class DataTable:
 
     @property
     def ddl(self) -> str:
-        sql = f"""IF OBJECT_ID('{self.db_name}', 'U') IS NULL CREATE TABLE {self.db_name}"""
+        sql = (
+            f"IF OBJECT_ID('{self.db_name}', 'U')"
+            + f"IS NULL CREATE TABLE {self.db_name}"
+        )
         col_sql = [
             f"{col.name} {col.type}"
             if col.default_value == ""
@@ -51,7 +54,8 @@ class DataTable:
 
     @property
     def row_dataclass(self) -> DataclassProtocol:
-        """We need to compare immutable objects. For that we use the sdc columns to create a row dataclass."""
+        """We need to compare immutable objects. For that we use the
+        sdc columns to create a row dataclass."""
         name = self.name + "_ROW"
         return make_dataclass(
             cls_name=name,

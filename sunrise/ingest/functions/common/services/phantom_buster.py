@@ -49,7 +49,10 @@ class PhantomBusterClient(RestClient):
         return response
 
     def get_result(self, organization_folder: str, result_blob: str) -> Dict:
-        url = f"{self._BASE_BUCKET_URL}/{self._organization_id}/{organization_folder}/{result_blob}"
+        url = (
+            f"{self._BASE_BUCKET_URL}/{self._organization_id}"
+            + f"/{organization_folder}/{result_blob}"
+        )
         result = self.get(url, self._get_headers())
         return result
 

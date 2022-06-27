@@ -25,5 +25,6 @@ def test_table_get_name(asset_table: DataTable):
 def test_table_ddl(asset_table: DataTable):
     assert (
         asset_table.ddl
-        == "IF OBJECT_ID('test_schema.test_table', 'U') IS NULL CREATE TABLE test_schema.test_table(sample_col VARCHAR(100))"
+        == "IF OBJECT_ID('test_schema.test_table', 'U') IS NULL "
+        + "CREATE TABLE test_schema.test_table(sample_col VARCHAR(100))"
     )

@@ -39,7 +39,8 @@ if __name__ == "__main__":
 
         processor = DeltaProcessor(table)
         content = processor.load_local_json(file_path)
-        # Execute delta check: load only records that are not in set of slowly changing dimensions in current table
+        # Execute delta check: load only records that are not in set
+        # of slowly changing dimensions in current table
 
         sql_list = processor.load_dict_to_sql(content)
         for sql_batch in batch(sql_list, 50):
