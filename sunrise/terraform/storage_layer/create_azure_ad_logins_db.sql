@@ -8,3 +8,5 @@ ALTER ROLE db_ddladmin ADD MEMBER [fernando.zepeda@qurix.tech];
 
 --Grant Database Permissions
 GRANT VIEW DATABASE STATE TO [fernando.zepeda@qurix.tech]
+
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [konkevych@qurix.tech];
