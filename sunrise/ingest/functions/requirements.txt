@@ -1,6 +1,6 @@
 requests==2.27.1
 pydantic==1.9.1
-azure-core==1.21.1
+azure-core<=2.0.0
 azure-functions==1.5.0
 azure-identity==1.10.0
 azure-storage-blob==12.12.0
