@@ -26,7 +26,9 @@ class DataLakeClient:
         cls, container_name: str, connection_string: str
     ) -> "DataLakeClient":
         client = cls(
-            container_name=container_name, connection_string=connection_string, account_name=None
+            container_name=container_name,
+            connection_string=connection_string,
+            account_name=None,
         )
         client.client = DataLakeServiceClient.from_connection_string(conn_str=connection_string)
         return client
@@ -34,15 +36,19 @@ class DataLakeClient:
     @classmethod
     def create_with_az_aad_auth(cls, container_name: str, account_name: str) -> "DataLakeClient":
         client = cls(
-            container_name=container_name, connection_string=None, account_name=account_name
+            container_name=container_name,
+            connection_string=None,
+            account_name=account_name,
         )
 
         # Managed Identity Credential flow is used, when the function is deployed to azure
         # and the managed identity of the function is activated and permitted via IAM.
         managed_identity_credential = ManagedIdentityCredential()
 
-        # Azure CLI Credential flow is used, when the managed identity is not found in the current environment.
-        # This means the function is running locally --> use the cli credentials to allow local access to cloud resources.
+        # Azure CLI Credential flow is used, when the managed identity is not
+        # found in the current environment.
+        # This means the function is running locally -->
+        # use the cli credentials to allow local access to cloud resources.
         azure_cli_credential = AzureCliCredential()
 
         credential_chain = ChainedTokenCredential(managed_identity_credential, azure_cli_credential)
@@ -65,9 +71,12 @@ class DataLakeClient:
 
         Args:
             dir_path (str): Path to the directory
-            files_only (bool, optional): if true, returns only files and not directories. Defaults to False.
-            file_ending (str, optional): filters on the file ending (suffix). Defaults to None.
-            return_only_paths (bool, optional): if true returns only the paths to the files and directories. Defaults to False.
+            files_only (bool, optional): if true, returns only files and not directories.
+                Defaults to False.
+            file_ending (str, optional): filters on the file ending (suffix).
+                Defaults to None.
+            return_only_paths (bool, optional): if true returns only the paths to the files and directories.
+                Defaults to False.
 
         Returns:
             List: Elements in the directory.
@@ -117,7 +126,8 @@ class DataLakeClient:
 
         Args:
             file_path (str): Path to the file.
-            raw_content (bool, optional): if true returns the bytes of the file. Defaults to False.
+            raw_content (bool, optional): if true returns the bytes of the file.
+                Defaults to False.
             encoding (str, optional): Encoding of the file. Defaults to "utf-8".
 
         Returns:
