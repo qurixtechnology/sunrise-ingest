@@ -17,6 +17,18 @@ variable "environment" {
   }
 }
 
+variable "short_env" {
+  type = map(string)
+
+  default = {
+    dev  = "d"
+    test = "t"
+    prod = "p"
+  }
+
+}
+
+
 variable "location" {
   type        = string
   description = "Azure region"

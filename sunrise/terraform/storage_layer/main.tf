@@ -34,7 +34,7 @@ resource "azurerm_mssql_server" "sqlserver" {
 }
 
 resource "azurerm_mssql_database" "sqldatabase" {
-  name                        = "${var.environment}_sunrise_db"
+  name                        = "db_${var.environment}_sunrise"
   server_id                   = azurerm_mssql_server.sqlserver.id
   max_size_gb                 = 4
   min_capacity                = 0.5
@@ -50,7 +50,7 @@ resource "azurerm_mssql_database" "sqldatabase" {
 }
 
 resource "azurerm_storage_account" "datalake" {
-  name                     = "dl${var.environment}store"
+  name                     = "dl${lookup(var.short_env, var.environment)}store"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
