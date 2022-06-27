@@ -32,5 +32,4 @@ if __name__ == "__main__":
         with open(f"local/{source.name}_{document_id}.json", "w", encoding="utf-8") as f:
             json.dump(result_json, f, indent=4, ensure_ascii=False)
 
-        logging.info(
-            f"Document {document_id} was stored in local/{source.name}_{document_id}")
+        logging.info(f"Document {document_id} was stored in local/{source.name}_{document_id}")

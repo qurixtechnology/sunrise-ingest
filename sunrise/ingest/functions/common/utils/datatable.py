@@ -54,8 +54,8 @@ class DataTable:
         """We need to compare immutable objects. For that we use the sdc columns to create a row dataclass."""
         name = self.name + "_ROW"
         return make_dataclass(
-            cls_name=name, fields=[(element.name, element.type)
-                                   for element in self.scd],
+            cls_name=name,
+            fields=[(element.name, element.type) for element in self.scd],
             # unsafe_hash=True,
-            frozen=True
+            frozen=True,
         )
