@@ -1,0 +1,2 @@
+### GET
+GET http://localhost:7071/api/check_health

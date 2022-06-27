@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+    function CookiebotCallback_OnAccept(){
+      // Set all preferences in a callback function or display some HTML content
+      if(!sessionStorage.getItem('isReloaded')) {
+        sessionStorage.setItem('isReloaded', true);
+
+        window.location.reload(true);
+
+        if (Cookiebot.consent.statistics)
+        {
+          // Irgendwelche Funktion wie z.B. an Google Analytics anschließen
+        }
+      }
+    }
+
+    window.addEventListener('CookiebotOnAccept', function (e) {
+      if (Cookiebot.consent.preferences)
+    {
+        //Execute code that sets preferences cookies
+        CookiebotCallback_OnAccept()
+    }
+      }, false);
+
+</script>
