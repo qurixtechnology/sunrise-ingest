@@ -34,12 +34,29 @@ resource "azurerm_mssql_server" "sqlserver" {
 }
 
 resource "azurerm_mssql_database" "sqldatabase" {
-  name                        = "db-${var.environment}"
+  name                        = "${var.environment}_sunrise_db"
   server_id                   = azurerm_mssql_server.sqlserver.id
   max_size_gb                 = 4
   min_capacity                = 0.5
   auto_pause_delay_in_minutes = 60
   sku_name                    = "GP_S_Gen5_2"
+  collation                   = "Latin1_General_100_CI_AI_SC_UTF8"
+
+  tags = {
+    env      = var.environment
+    use_case = var.use_case
+  }
+
+}
+
+resource "azurerm_storage_account" "datalake" {
+  name                     = "dl${var.environment}store"
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  is_hns_enabled           = true
+  access_tier              = "Hot"
 
   tags = {
     env      = var.environment

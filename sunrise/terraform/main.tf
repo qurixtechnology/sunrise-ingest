@@ -73,6 +73,15 @@ module "ingest_layer" {
   location            = var.location
 }
 
+module "base_layer" {
+  source              = "./base_layer"
+  use_case            = var.use_case
+  environment         = var.environment
+  resource_group_name = module.resource_group.rg_name
+  location            = var.location
+  storage_account_id  = module.storage_layer.storage_account_id
+}
+
 # module compute_layer {}
 
 # module serve_layer {} 
