@@ -4,6 +4,7 @@ local.settings.json
 
 # Local
 Makefile
+local
 
 # Python
 __pycache__/
@@ -12,3 +13,5 @@ __pycache__/
 # Pytest
 .pytest_cache
 test-output.xml
+.python_packages
+
