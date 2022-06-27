@@ -34,7 +34,7 @@ class DataTable:
     def ddl(self) -> str:
         sql = (
             f"IF OBJECT_ID('{self.db_name}', 'U')"
-            + f"IS NULL CREATE TABLE {self.db_name}"
+            + f" IS NULL CREATE TABLE {self.db_name}"
         )
         col_sql = [
             f"{col.name} {col.type}"
