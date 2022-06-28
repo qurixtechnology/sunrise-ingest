@@ -1,4 +1,4 @@
-name: 'Sunrise Infrastructure'
+name: Terraform Sunrise Infrastructure
 
 on:
   push:

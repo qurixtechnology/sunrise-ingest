@@ -1,4 +1,4 @@
-name: 'Deploy Ingest Azure Function'
+name: Deploy Ingest Azure Function
 
 on:
   workflow_run:
