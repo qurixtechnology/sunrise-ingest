@@ -13,9 +13,9 @@ jobs:
   call_reusable_workflow:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@feature/function-deploy
     with:
-      python_version: 3.8
-      azure_function_build_path: ./sunrise/ingest/functions
-      environment: dev
       azure_function_app_name: func-dev-ingest-sunrise-core
+      azure_function_app_build_path: ./sunrise/ingest/functions
+      environment: dev
+      python_version: 3.8
 
       #if: github.event.pull_request.merged
