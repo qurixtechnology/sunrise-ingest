@@ -1,4 +1,4 @@
-from configs.base import LocalConfig, Config
+from configs.base import Config
 from enum import Enum
 
 
@@ -8,9 +8,4 @@ class Environment(str, Enum):
     PROD = "prod"
 
 
-ENV = Environment.DEV
-
-if ENV == Environment.DEV:
-    config = LocalConfig()
-else:
-    config = Config()
+config = Config()
