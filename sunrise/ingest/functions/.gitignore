@@ -5,6 +5,7 @@ local.settings.json
 # Local
 Makefile
 local
+.env
 
 # Python
 __pycache__/
