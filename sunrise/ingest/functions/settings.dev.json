@@ -10,7 +10,7 @@
     "slotSetting": false
   },
   {
-    "name": "SQL_SERVER_HOST",
+    "name": "SQL_SERVER_CONNECTION_STRING",
     "value": "",
     "slotSetting": false
   }
