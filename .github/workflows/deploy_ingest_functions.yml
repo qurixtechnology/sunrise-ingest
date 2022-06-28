@@ -1,22 +1,18 @@
 name: 'Deploy Ingest Azure Function'
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-  push:
-    branches:
-      - 'feature/**'
+  workflow_run:
+    workflows: ['Build Ingest Azure Function']
+    types:
+      - completed
 
 jobs:
   call_reusable_workflow:
-    uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@feature/function-deploy
+    uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@main
     with:
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: ./sunrise/ingest/functions
       environment: dev
       python_version: 3.8
     secrets: inherit
-
-      #if: github.event.pull_request.merged
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
