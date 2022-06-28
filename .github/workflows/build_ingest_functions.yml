@@ -1,16 +1,16 @@
-name: 'Build Ingest Azure Function'
+name: Build Ingest Azure Function
 
 on:
   push:
     branches:
       - 'feature/**'
     paths:
-      - 'sunrise/ingest/functions'
+      - 'sunrise/ingest/functions/**'
   pull_request:
     branches:
       - main
     paths:
-      - 'sunrise/ingest/functions'
+      - 'sunrise/ingest/functions/**'
 
 jobs:
   call_reusable_workflow:    
