@@ -16,3 +16,4 @@ __pycache__/
 test-output.xml
 .python_packages
 
+.DS_Store
