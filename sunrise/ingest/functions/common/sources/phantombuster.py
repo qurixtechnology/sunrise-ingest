@@ -1,7 +1,6 @@
 from common.utils.source import PhantomBusterSource
 from configs.phantom_buster import PhantomsAgent, PhantomStorageFolder
 
-
 LINKEDIN_FOLLOWERS_SOURCE = PhantomBusterSource(
     name="linkedin_followers",
     agent=PhantomsAgent.LINKEDIN_FOLLOWERS.value,

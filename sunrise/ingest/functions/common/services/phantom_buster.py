@@ -1,18 +1,13 @@
-from common.services.rest import RestClient
+import logging
+import time
 from typing import Dict, Optional
 from urllib.parse import urljoin
-import time
-import logging
+
+from common.services.rest import RestClient
 
 
 class PhantomBusterClient(RestClient):
-    """Client to make http calls to Phantom Buster
-
-    Args:
-        RestClient (ABC):
-
-
-    """
+    """Client to make http calls to Phantom Buster"""
 
     _BASE_URL = "https://api.phantombuster.com/api"
     _BASE_BUCKET_URL = "https://phantombuster.s3.amazonaws.com"
@@ -39,7 +34,10 @@ class PhantomBusterClient(RestClient):
         return result
 
     def get_container_output(self, container_id: str) -> Optional[Dict]:
-        url = f"{self._base_url}/containers/fetch-output?id={container_id}&mode=json"
+        url = (
+            f"{self._base_url}/containers/"
+            + "fetch-output?id={container_id}&mode=json"
+        )
         result = self.get(url, self._get_headers())
         return result
 

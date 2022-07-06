@@ -1,7 +1,8 @@
-from common.utils.datatable import DataTable, DataColumn
-from common.data_tables.sales_navigator import STAGE_SALES_NAVIGATOR
-from common.data_tables.linkedin_followers import STAGE_LINKEDIN_FOLLOWERS
 from typing import Any, Dict
+
+from common.data_tables.linkedin_followers import STAGE_LINKEDIN_FOLLOWERS
+from common.data_tables.sales_navigator import STAGE_SALES_NAVIGATOR
+from common.utils.datatable import DataColumn, DataTable
 
 
 def utility_test_table(target_table: Any, input_dict: Dict[str, Any]):

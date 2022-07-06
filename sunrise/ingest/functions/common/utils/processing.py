@@ -1,9 +1,10 @@
-from typing import Dict, List, Iterable, Protocol, Optional, Callable
-import pyodbc
-from common.utils.datatable import DataTable
-from pathlib import Path
 import json
 from abc import ABC, abstractclassmethod
+from pathlib import Path
+from typing import Callable, Dict, Iterable, List, Optional, Protocol
+
+import pyodbc
+from common.utils.datatable import DataTable
 
 
 class DataclassProtocol(Protocol):
@@ -14,7 +15,7 @@ class DataclassProtocol(Protocol):
 
 def batch(iterable: Iterable, size: int = 1) -> Iterable:
     for j in range(0, len(iterable), size):
-        yield iterable[j : j + size]
+        yield iterable[j: j + size]
 
 
 class BaseProcessor(ABC):
@@ -63,7 +64,8 @@ class DeltaProcessor(BaseProcessor):
     def filter_columns(content: List[Dict], keep_cols: List) -> List[Dict]:
         final_table = []
         for row in content:
-            final_table.append({k: v for k, v in row.items() if k in keep_cols})
+            final_table.append({k: v for k, v in row.items()
+                                if k in keep_cols})
         return final_table
 
     def load_sql_table(self, connection: pyodbc.Connection) -> List[Dict]:

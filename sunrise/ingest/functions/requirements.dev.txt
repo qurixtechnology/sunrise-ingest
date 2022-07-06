@@ -5,3 +5,4 @@ pytest-mock==3.6.1
 isort==5.10.1
 python-dotenv==0.20.0
 pyodbc==4.0.32
+pre-commit==2.19.0

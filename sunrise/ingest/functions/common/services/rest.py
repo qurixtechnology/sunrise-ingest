@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-import requests
 from typing import Dict, List, Optional, Union
+
+import requests
 
 
 class RestClientBase(ABC):

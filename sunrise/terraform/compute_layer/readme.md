@@ -27,7 +27,7 @@ helm install $HELM_RELEASE_NAME $HELM_CHART --namespace $NAMESPACE --debug --set
 helm upgrade $AIRFLOW_RELEASE bitnami-azure/airflow --namespace $NAMESPACE --set airflow.cloneDagFilesFromGit.enabled=true \
                 --set airflow.cloneDagFilesFromGit.repository=https://github.com/qurixtechnology/airflow-dags \
                 --set airflow.cloneDagFilesFromGit.branch=main \
-                --set airflow.baseUrl=http://127.0.0.1:8080 
+                --set airflow.baseUrl=http://127.0.0.1:8080
 ```
 
 ## Check Service

@@ -1,5 +1,6 @@
-from configs.base import Config
 from enum import Enum
+
+from configs.base import Config
 
 
 class Environment(str, Enum):

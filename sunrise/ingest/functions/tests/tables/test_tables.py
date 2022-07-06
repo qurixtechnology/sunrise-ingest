@@ -1,5 +1,5 @@
 import pytest
-from common.utils.datatable import DataTable, DataColumn
+from common.utils.datatable import DataColumn, DataTable
 
 
 @pytest.fixture

@@ -1,6 +1,5 @@
-from dataclasses import dataclass
-from typing import List, Optional, Dict, Callable, Protocol
-from dataclasses import make_dataclass
+from dataclasses import dataclass, make_dataclass
+from typing import Callable, Dict, List, Optional, Protocol
 
 
 class DataclassProtocol(Protocol):

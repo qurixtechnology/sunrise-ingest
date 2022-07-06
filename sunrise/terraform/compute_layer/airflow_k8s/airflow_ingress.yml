@@ -14,5 +14,5 @@ spec:
           backend:
             service:
               name: airflow-dev-sunrise
-              port: 
+              port:
                 number: 8080

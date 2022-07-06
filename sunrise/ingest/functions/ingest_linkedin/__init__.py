@@ -1,18 +1,15 @@
+import json
 import logging
+import posixpath
+
 import azure.functions as func
 from common.constants import AZURE_FUNCTION_APP_NAME
 from common.services.datalake import DataLakeClient
-from common.utils.logger import init_logger
 from common.services.phantom_buster import PhantomBusterClient
+from common.utils.logger import init_logger
+from configs.phantom_buster import (PHANTOM_ORG_FOLDER, PHANTOM_RESULT_BLOB,
+                                    PhantomsAgent, PhantomStorageFolder)
 from configs.settings import config
-from configs.phantom_buster import (
-    PHANTOM_ORG_FOLDER,
-    PHANTOM_RESULT_BLOB,
-    PhantomStorageFolder,
-    PhantomsAgent,
-)
-import json
-import posixpath
 
 __FUNCTION_NAME__ = "ingest_linkedin"
 
