@@ -1,6 +1,7 @@
 default_language_version:
     python: python3.8
 
+files: ^functions/
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: 3298ddab3c13dd77d6ce1fc0baf97691430d84b0  # frozen: v4.3.0
