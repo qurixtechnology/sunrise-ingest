@@ -15,7 +15,7 @@ from configs.settings import config
 __FUNCTION_NAME__ = "ingest_linkedin"
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def main(timer: func.TimerRequest) -> func.HttpResponse:
     """Health Function
 
     Args:
