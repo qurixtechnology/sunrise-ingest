@@ -1,8 +1,8 @@
 import logging
-import pyodbc
 import time
-
 from typing import Any
+
+import pyodbc
 
 
 class SqlServerClient:

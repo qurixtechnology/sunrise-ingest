@@ -13,5 +13,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     """
     return func.HttpResponse(
         status_code=200,
-        body=f"The Service {AZURE_FUNCTION_APP_NAME} is healthy!",
+        body=f"The service {AZURE_FUNCTION_APP_NAME} is healthy!",
     )

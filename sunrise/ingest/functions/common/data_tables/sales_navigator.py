@@ -1,6 +1,5 @@
 from common.utils.datatable import DataColumn, DataTable
 
-
 STAGE_SALES_NAVIGATOR = DataTable(
     schema="[SOURCE]",
     name="SALES_NAVIGATOR",

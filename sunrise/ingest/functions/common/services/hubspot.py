@@ -1,5 +1,6 @@
-from common.services.rest import RestClient
 from typing import Dict
+
+from common.services.rest import RestClient
 
 
 class HubspotClient(RestClient):

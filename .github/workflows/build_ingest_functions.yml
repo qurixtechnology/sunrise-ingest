@@ -13,8 +13,8 @@ on:
       - 'sunrise/ingest/functions/**'
 
 jobs:
-  call_reusable_workflow:    
-    uses: qurixtechnology/base-workflows/.github/workflows/do_python_tests.yml@main
+  call_reusable_workflow:
+    uses: qurixtechnology/base-workflows/.github/workflows/run_python_tests.yml@main
     with:
       python_version: 3.8
       build_path: ./sunrise/ingest/functions

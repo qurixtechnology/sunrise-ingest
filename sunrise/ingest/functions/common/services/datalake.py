@@ -1,16 +1,13 @@
 import logging
 import posixpath
+from abc import ABC, abstractclassmethod
 from pathlib import PurePosixPath
 from typing import Any, List, Optional, Union
 
 from azure.core.exceptions import ResourceNotFoundError
+from azure.identity import (AzureCliCredential, ChainedTokenCredential,
+                            ManagedIdentityCredential)
 from azure.storage.filedatalake import DataLakeServiceClient
-from azure.identity import (
-    ManagedIdentityCredential,
-    AzureCliCredential,
-    ChainedTokenCredential,
-)
-from abc import ABC, abstractclassmethod
 
 
 class DataLakeClientBase(ABC):
@@ -149,15 +146,19 @@ class DataLakeClient(DataLakeClientBase):
         return result
 
     def get_file_content(
-        self, file_path: str, raw_content: bool = False, encoding: str = "utf-8"
+        self,
+        file_path: str,
+        raw_content: bool = False,
+        encoding: str = "utf-8",
     ) -> Union[str, bytes]:
         """Returns the content of a file from the Data Lake.
 
         Args:
             file_path (str): Path to the file.
-            raw_content (bool, optional): if true returns the bytes of the file.
-                Defaults to False.
-            encoding (str, optional): Encoding of the file. Defaults to "utf-8".
+            raw_content (bool, optional): if true returns the bytes
+                of the file. Defaults to False.
+            encoding (str, optional): Encoding of the file.
+                Defaults to "utf-8".
 
         Returns:
             Union[str, bytes]: Content of the file.
@@ -204,7 +205,8 @@ class DataLakeClient(DataLakeClientBase):
         file_client.upload_data(content, overwrite=True)
 
     def copy_file(self, source_file_path: str, target_file_path: str) -> None:
-        """Copys a file from a given source file path to a given target file path, bitwise.
+        """Copys a file from a given source file path to a given target file path,
+            bitwise.
 
         Args:
             source_file_path (str): Path to the file to copy-
@@ -226,7 +228,10 @@ class DataLakeClient(DataLakeClientBase):
         source_dir_client = source_fs_client.get_directory_client(
             source_dir_path
         )
-        source_file_client = source_dir_client.get_file_client(source_file_name)
+
+        source_file_client = source_dir_client.get_file_client(
+            source_file_name
+        )
 
         target_fs_client = self.client.get_file_system_client(
             self.container_name
@@ -234,7 +239,10 @@ class DataLakeClient(DataLakeClientBase):
         target_dir_client = target_fs_client.get_directory_client(
             target_dir_path
         )
-        target_file_client = target_dir_client.get_file_client(target_file_name)
+
+        target_file_client = target_dir_client.get_file_client(
+            target_file_name
+        )
 
         file_content = source_file_client.download_file().readall()
         target_file_client.upload_data(file_content, overwrite=True)

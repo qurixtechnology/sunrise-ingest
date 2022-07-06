@@ -1,6 +1,5 @@
 from common.utils.datatable import DataColumn, DataTable
 
-
 STAGE_LINKEDIN_FOLLOWERS = DataTable(
     schema="[SOURCE]",
     name="LINKEDIN_FOLLOWERS",

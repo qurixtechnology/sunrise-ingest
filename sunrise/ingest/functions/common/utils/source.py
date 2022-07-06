@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from configs.phantom_buster import PHANTOM_RESULT_BLOB, PHANTOM_ORG_FOLDER
+
+from configs.phantom_buster import PHANTOM_ORG_FOLDER, PHANTOM_RESULT_BLOB
 
 
 @dataclass

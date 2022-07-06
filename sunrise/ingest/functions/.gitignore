@@ -5,6 +5,7 @@ local.settings.json
 # Local
 Makefile
 local
+.env
 
 # Python
 __pycache__/
@@ -15,3 +16,4 @@ __pycache__/
 test-output.xml
 .python_packages
 
+.DS_Store
