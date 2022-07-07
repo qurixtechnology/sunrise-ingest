@@ -14,6 +14,6 @@ jobs:
       azure_function_app_build_path: ./sunrise/ingest/functions
       environment: dev
       python_version: 3.8
-      current_branch: ${{ github.head_ref }}
+      current_branch: ${{ github.event.workflow_run.head_branch }}
     secrets: inherit
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
