@@ -30,11 +30,6 @@
     "slotSetting": false
   },
   {
-    "name": "WEBSITE_RUN_FROM_PACKAGE",
-    "value": "https://sadevingest.blob.core.windows.net/github-actions-deploy/Functionapp_2022628184744.zip?sv=2018-11-09&st=2022-06-28T18%3A42%3A44Z&se=2023-06-28T18%3A47%3A44Z&sr=b&sp=r&sig=z6mHnZXUOJyX6rtTSKETgXbJ9fkXN%2BzD8tJzMnMKru8%3D",
-    "slotSetting": false
-  },
-  {
     "name": "HUBSPOT_API_KEY",
     "value": "eu1-4791-d2ba-48e7-8ebc-a0a26bc20112",
     "slotSetting": false
