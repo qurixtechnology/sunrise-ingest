@@ -17,10 +17,12 @@ jobs:
       
   call_reusable_workflow:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@main
+    needs: check-head
     with:
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: ./sunrise/ingest/functions
       environment: dev
       python_version: 3.8
+      current_branch: ${{ github.event.workflow_run.head_branch }}
     secrets: inherit
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
