@@ -6,6 +6,7 @@ local.settings.json
 Makefile
 local
 *.env
+output/
 
 # Python
 __pycache__/
