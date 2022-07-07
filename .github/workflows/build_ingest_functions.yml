@@ -14,8 +14,20 @@ on:
 
 jobs:
   build:
-    uses: qurixtechnology/base-workflows/.github/workflows/run_python_tests.yml@main
+    uses: qurixtechnology/base-workflows/.github/workflows/build_python_azure_function.yml@main
     with:
       python_version: 3.8
       build_path: ./sunrise/ingest/functions
+      artifact_name: python-app
       current_branch: ${{ github.head_ref }}
+
+
+  deploy:
+    uses: qurixtechnology/base-workflows/.github/workflows/deploy_python_azure_function.yml@main
+    needs: build
+    with:
+      azure_function_app_name: func-dev-ingest-sunrise-core
+      azure_function_app_build_path: .
+      environment: dev
+      artifact_name: python-app
+    secrets: inherit
