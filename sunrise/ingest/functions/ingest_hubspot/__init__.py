@@ -16,11 +16,12 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
     Returns:
         func.HttpResponse: an Azure response object
     """
+
     init_logger()
     logging.info(
         f"Starting function {__FUNCTION_NAME__} from {AZURE_FUNCTION_APP_NAME}"
     )
     return func.HttpResponse(
         status_code=200,
-        body=f"The Service {AZURE_FUNCTION_APP_NAME} is healthy!",
+        body=f"The Function {__FUNCTION_NAME__} in Service {AZURE_FUNCTION_APP_NAME} is healthy!",
     )
