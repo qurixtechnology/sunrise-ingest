@@ -16,7 +16,7 @@ jobs:
 
   deploy-function:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@main
-    needs: first
+    needs: check-head
     with:
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: ./sunrise/ingest/functions
