@@ -7,14 +7,15 @@ on:
       - completed
 
 jobs:
-  check-head:
+  first:
     runs-on: ubuntu-latest
     steps:
       - name: Check head
         run: |
-          echo '${{ toJSON(github.event.workflow_run) }}'
+          echo '${{ toJSON(github) }}'
 
-  deploy-function:
+      
+  call_reusable_workflow:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@main
     needs: check-head
     with:

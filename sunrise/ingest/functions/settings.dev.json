@@ -46,7 +46,11 @@
   },
   {
     "name": "SQL_SERVER_CONNECTION_STRING",
+<<<<<<< HEAD
     "value": "sadfsdfg",
+=======
+    "value": "some",
+>>>>>>> f58b6a6553d5c8ce2629c79f9b8179e321ea13a1
     "slotSetting": false
   },
   {
