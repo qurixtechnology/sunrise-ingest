@@ -43,6 +43,7 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
             api_version="v2",
             organization_id=source.organization_folder,
         )
+
         logging.info("Launching Phantom Buster Job")
         result = client.launch(agent_id=source.agent)
 
