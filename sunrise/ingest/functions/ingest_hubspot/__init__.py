@@ -7,11 +7,11 @@ from common.utils.logger import init_logger
 __FUNCTION_NAME__ = "ingest_hubspot"
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    """Health Function
+def main(timer: func.TimerRequest) -> func.HttpResponse:
+    """Ingest Hubspot
 
     Args:
-        req (func.HttpRequest): an Azure request
+        timer (func.TimerRequest): an Azure Timer Request
 
     Returns:
         func.HttpResponse: an Azure response object
