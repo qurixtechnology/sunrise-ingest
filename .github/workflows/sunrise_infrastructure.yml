@@ -20,4 +20,5 @@ jobs:
       environment: dev
       use_case: sunrise-core
       aks_dns_prefix: sunrise
+      current_branch: ${{ github.head_ref }}
     secrets: inherit

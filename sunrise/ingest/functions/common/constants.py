@@ -1,1 +1,1 @@
-AZURE_FUNCTION_APP_NAME = "func-app-ingest-sunrise-core"
+AZURE_FUNCTION_APP_NAME = "func-dev-ingest-sunrise-core"

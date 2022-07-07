@@ -1,15 +1,16 @@
 {
-    "scriptFile": "__init__.py",
-    "bindings": [
-      {
-        "type": "httpTrigger",
-        "name": "req",
-        "direction": "in"
-      },
-      {
-        "type": "http",
-        "direction": "out",
-        "name": "$return"
-      }
-    ]
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "schedule": "0 25 1 * * *",
+      "name": "timer",
+      "type": "timerTrigger",
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
 }

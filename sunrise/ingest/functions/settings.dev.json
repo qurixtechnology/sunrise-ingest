@@ -46,7 +46,22 @@
   },
   {
     "name": "SQL_SERVER_CONNECTION_STRING",
-    "value": "some_value_5",
+    "value": "some",
+    "slotSetting": false
+  },
+  {
+    "name": "RAW_LINKEDIN_DIR_PATH",
+    "value": "raw/linkedin",
+    "slotSetting": false
+  },
+  {
+    "name": "STORAGE_ACCOUNT_CONTAINER",
+    "value": "fs-core",
+    "slotSetting": false
+  },
+  {
+    "name": "STORAGE_ACCOUNT_NAME",
+    "value": "dldstore",
     "slotSetting": false
   }
 ]

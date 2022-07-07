@@ -31,12 +31,13 @@ class PhantomBusterClient(RestClient):
         result = self.post(
             url=url, headers=self._get_headers(), data=agent_data
         )
+        logging.info("Authentication successful")
         return result
 
     def get_container_output(self, container_id: str) -> Optional[Dict]:
         url = (
             f"{self._base_url}/containers/"
-            + "fetch-output?id={container_id}&mode=json"
+            + f"fetch-output?id={container_id}&mode=json"
         )
         result = self.get(url, self._get_headers())
         return result
@@ -58,16 +59,19 @@ class PhantomBusterClient(RestClient):
         self, container_id: str, organization_folder: str, result_blob: str
     ) -> Dict:
         attempts = 0
-        wait = 30
+        wait = 45
         while attempts <= 4:
             try:
-                logging.info(f"Attempt: {attempts+1}")
+                logging.debug(f"Attempt: {attempts+1}")
                 output = self.get_container_output(container_id)["output"]
-                if output is None:
+                if output in (None, "output"):
                     raise KeyError("Phantom Buster results are not yet ready")
                 result = self.get_result(organization_folder, result_blob)
                 return result
             except KeyError as e:
                 attempts += 1
-                logging.info(f"Client Error: {e}. Waiting for {wait} seconds")
+                logging.debug(
+                    f"Client Error: {e}. Phantom is running. Waiting {wait}" +
+                    "seconds"
+                )
                 time.sleep(wait)
