@@ -7,6 +7,14 @@ on:
       - completed
 
 jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check head
+        run: |
+          echo '${{ toJSON(github) }}'
+
+      
   call_reusable_workflow:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_azure_function.yml@main
     with:
