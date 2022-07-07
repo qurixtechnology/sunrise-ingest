@@ -36,8 +36,8 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
     )
     source: PhantomBusterSource = LINKEDIN_FOLLOWERS_SOURCE
     linkedin_raw_path = config.RAW_LINKEDIN_DIR_PATH
-    try:
 
+    try:
         client = PhantomBusterClient(
             api_key=config.PHANTOM_BUSTER_API_KEY,
             api_version="v2",
