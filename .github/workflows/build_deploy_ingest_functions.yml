@@ -27,6 +27,7 @@ jobs:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_python_azure_function.yml@feature/zip-af
     needs: build
     with:
+      azure_function_resource_group: rg-dev-sunrise-core
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: .
       environment: dev
