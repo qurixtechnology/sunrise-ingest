@@ -1,5 +1,0 @@
-### Health
-GET http://localhost:7071/api/check_health
-
-### Linkedin followers
-GET http://localhost:7071/api/ingest_linkedin

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+    "value": "6c20e3ce-c3f1-4e50-bef4-07f15e251573",
+    "slotSetting": false
+  },
+  {
+    "name": "AzureWebJobsDashboard",
+    "value": "DefaultEndpointsProtocol=https;AccountName=sadevingest;AccountKey=Gv8FJIzdBA9unnTXXh3kmevlLDW4cE7mCxF5TtHIanLR/cuTz50KNYQtmcA9p+WqF0lko2Du09E2+ASt7j+Tjg==;EndpointSuffix=core.windows.net",
+    "slotSetting": false
+  },
+  {
+    "name": "AzureWebJobsStorage",
+    "value": "DefaultEndpointsProtocol=https;AccountName=sadevingest;AccountKey=Gv8FJIzdBA9unnTXXh3kmevlLDW4cE7mCxF5TtHIanLR/cuTz50KNYQtmcA9p+WqF0lko2Du09E2+ASt7j+Tjg==;EndpointSuffix=core.windows.net",
+    "slotSetting": false
+  },
+  {
+    "name": "FUNCTIONS_EXTENSION_VERSION",
+    "value": "~3",
+    "slotSetting": false
+  },
+  {
+    "name": "FUNCTIONS_WORKER_RUNTIME",
+    "value": "Python",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_ENABLE_SYNC_UPDATE_SITE",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "HUBSPOT_API_KEY",
+    "value": "eu1-4791-d2ba-48e7-8ebc-a0a26bc20112",
+    "slotSetting": false
+  },
+  {
+    "name": "PHANTOM_BUSTER_API_KEY",
+    "value": "NR9LzUSCs3qtmYhpOo9aGGL6nFwHdXpMboUKiDvltCU",
+    "slotSetting": false
+  },
+  {
+    "name": "SQL_SERVER_CONNECTION_STRING",
+    "value": "sadfsdsf",
+    "slotSetting": false
+  },
+  {
+    "name": "RAW_LINKEDIN_DIR_PATH",
+    "value": "raw/linkedin",
+    "slotSetting": false
+  },
+  {
+    "name": "STORAGE_ACCOUNT_CONTAINER",
+    "value": "fs-core",
+    "slotSetting": false
+  },
+  {
+    "name": "STORAGE_ACCOUNT_NAME",
+    "value": "dldstore",
+    "slotSetting": false
+  }
+]
