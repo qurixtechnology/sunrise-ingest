@@ -1,1 +1,20 @@
-.vscode
+# Development
+.venv
+local.settings.json
+
+# Local
+Makefile
+local
+*.env
+output/
+
+# Python
+__pycache__/
+*/__pycache__
+
+# Pytest
+.pytest_cache/
+test-output.xml
+.python_packages
+
+.DS_Store

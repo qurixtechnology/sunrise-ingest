@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - 'feature/**'
-    paths:
-      - 'sunrise/ingest/functions/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'sunrise/ingest/functions/**'
 
 jobs:
   build:
@@ -18,7 +14,7 @@ jobs:
     uses: qurixtechnology/base-workflows/.github/workflows/build_python_azure_function.yml@feature/zip-af
     with:
       python_version: 3.8
-      build_path: ./sunrise/ingest/functions
+      build_path: .
       artifact_name: python-app
       current_branch: ${{ github.head_ref }}
 
