@@ -1,6 +1,7 @@
 # Development
 .venv
 local.settings.json
+.vscode
 
 # Local
 Makefile
