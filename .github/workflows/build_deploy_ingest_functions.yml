@@ -14,7 +14,7 @@ jobs:
     with:
       python_version: 3.8
       build_path: .
-      artifact_name: python-app-ingest
+      artifact_name: "python-app-ingest-${{ github.sha }}"
       current_branch: ${{ github.head_ref }}
 
   deploy:
@@ -25,6 +25,6 @@ jobs:
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: .
       environment: dev
-      artifact_name: python-app-ingest
+      artifact_name: "python-app-ingest-${{ github.sha }}"
     secrets: inherit
-    if: ${{ github.event_name == 'push' }}
+    if: (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
