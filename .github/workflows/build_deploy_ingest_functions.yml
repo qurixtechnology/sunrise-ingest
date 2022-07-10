@@ -3,7 +3,7 @@ name: Build and Deploy Ingest Azure Function
 on:
   push:
     branches:
-      - 'feature/**'
+      - "feature/**"
   pull_request:
     branches:
       - main
@@ -14,9 +14,8 @@ jobs:
     with:
       python_version: 3.8
       build_path: .
-      artifact_name: python-app
+      artifact_name: python-app-ingest
       current_branch: ${{ github.head_ref }}
-
 
   deploy:
     uses: qurixtechnology/base-workflows/.github/workflows/deploy_python_azure_function.yml@main
@@ -26,6 +25,6 @@ jobs:
       azure_function_app_name: func-dev-ingest-sunrise-core
       azure_function_app_build_path: .
       environment: dev
-      artifact_name: python-app
+      artifact_name: python-app-ingest
     secrets: inherit
     if: ${{ github.event_name == 'push' }}

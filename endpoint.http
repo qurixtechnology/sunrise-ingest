@@ -1,0 +1,12 @@
+### Check Health
+
+GET http://localhost:7071/api/check_health
+
+### Check Ingest Linkedin
+
+POST http://localhost:7071/admin/functions/ingest_linkedin
+Content-Type: application/json
+
+{}
+
+### Check Ingest Hubspot
