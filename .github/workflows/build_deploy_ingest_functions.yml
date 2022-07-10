@@ -10,8 +10,7 @@ on:
 
 jobs:
   build:
-    #uses: qurixtechnology/base-workflows/.github/workflows/build_python_azure_function.yml@main
-    uses: qurixtechnology/base-workflows/.github/workflows/build_python_azure_function.yml@feature/zip-af
+    uses: qurixtechnology/base-workflows/.github/workflows/build_python_azure_function.yml@main
     with:
       python_version: 3.8
       build_path: .
@@ -20,7 +19,7 @@ jobs:
 
 
   deploy:
-    uses: qurixtechnology/base-workflows/.github/workflows/deploy_python_azure_function.yml@feature/zip-af
+    uses: qurixtechnology/base-workflows/.github/workflows/deploy_python_azure_function.yml@main
     needs: build
     with:
       azure_function_resource_group: rg-dev-sunrise-core

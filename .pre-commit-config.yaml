@@ -32,6 +32,6 @@ repos:
   - id: linter
     name: pylint
     exclude: local/
-    entry: pytest --flake8 -m flake8 --cache-clear --ignore=E501 .
+    entry: pytest --flake8 -m flake8 --cache-clear --ignore=E501 common configs ingest_hubspot ingest_linkedin tests
     language: system
     always_run: true
