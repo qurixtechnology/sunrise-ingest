@@ -29,7 +29,7 @@ repos:
     entry: isort --atomic .
     language: system
     always_run: true
-  
+
   - id: linter
     name: pylint
     exclude: local/
