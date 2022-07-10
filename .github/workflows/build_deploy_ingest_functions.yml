@@ -1,4 +1,4 @@
-name: Build Ingest Azure Function
+name: Build and Deploy Ingest Azure Function
 
 on:
   push:
@@ -28,3 +28,4 @@ jobs:
       environment: dev
       artifact_name: python-app
     secrets: inherit
+    if: ${{ github.event_name == 'push' }}
