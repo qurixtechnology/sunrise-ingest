@@ -57,15 +57,15 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
             container_id=result["containerId"],
             organization_folder=source.storage,
             result_blob=source.result_file,
-        )
 
         now = datetime.strftime(datetime.now(), "%Y-%m-%d")
         document_name = f"{source.name}_{now}.json"
-        file_path_upload = posixpath.join(
+
+        file_path_upload=posixpath.join(
             linkedin_raw_path,
             document_name,)
         logging.info(f"Uploading document with id {document_name}" +
-                     "to data lake")
+                     " to data lake")
         datalake_client.upload_file_content(
             content=json.dumps(result_json, default=str, ensure_ascii=False),
             file_path=file_path_upload,
