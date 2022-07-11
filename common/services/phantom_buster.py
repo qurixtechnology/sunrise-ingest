@@ -32,11 +32,12 @@ class PhantomBusterClient(RestClient):
         result = self.post(
             url=url, headers=self._get_headers(), data=agent_data
         )
-        if result["status"] != "error":
+        self.log.debug(result)
+        if result and result.get("status") != "error":
             self.log.info("Authentication successful")
         else:
             self.log.error("Error: something happened.")
-            raise Exception(f"See {result['error']}")
+            raise Exception(f"See {result.get('error', 'key error')}")
         return result
 
     def get_container_output(self, container_id: str) -> Optional[Dict]:
