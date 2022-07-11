@@ -27,4 +27,4 @@ jobs:
       environment: dev
       artifact_name: "python-app-ingest-${{ github.sha }}"
     secrets: inherit
-    if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: (github.event_name == 'pull_request')
