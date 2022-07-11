@@ -24,6 +24,6 @@ def main(timer: func.TimerRequest):
     )
     return func.HttpResponse(
         status_code=200,
-        body=f"The function {__FUNCTION_NAME__} in" +
-        f"Service {AZURE_FUNCTION_APP_NAME} is healthy!",
+        body=f"The function {__FUNCTION_NAME__} in"
+        + f"Service {AZURE_FUNCTION_APP_NAME} is healthy!",
     )

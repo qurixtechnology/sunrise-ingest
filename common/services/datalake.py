@@ -229,9 +229,7 @@ class DataLakeClient(DataLakeClientBase):
             source_dir_path
         )
 
-        source_file_client = source_dir_client.get_file_client(
-            source_file_name
-        )
+        source_file_client = source_dir_client.get_file_client(source_file_name)
 
         target_fs_client = self.client.get_file_system_client(
             self.container_name
@@ -240,9 +238,7 @@ class DataLakeClient(DataLakeClientBase):
             target_dir_path
         )
 
-        target_file_client = target_dir_client.get_file_client(
-            target_file_name
-        )
+        target_file_client = target_dir_client.get_file_client(target_file_name)
 
         file_content = source_file_client.download_file().readall()
         target_file_client.upload_data(file_content, overwrite=True)

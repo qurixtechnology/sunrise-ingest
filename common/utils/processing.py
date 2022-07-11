@@ -16,7 +16,7 @@ class DataclassProtocol(Protocol):
 
 def batch(iterable: Iterable, size: int = 1) -> Iterable:
     for j in range(0, len(iterable), size):
-        yield iterable[j: j + size]
+        yield iterable[j : j + size]
 
 
 class BaseProcessor(ABC):
@@ -65,8 +65,7 @@ class DeltaProcessor(BaseProcessor):
     def filter_columns(content: List[Dict], keep_cols: List) -> List[Dict]:
         final_table = []
         for row in content:
-            final_table.append({k: v for k, v in row.items()
-                                if k in keep_cols})
+            final_table.append({k: v for k, v in row.items() if k in keep_cols})
         return final_table
 
     def load_sql_table(self, connection: pyodbc.Connection) -> List[Dict]:
