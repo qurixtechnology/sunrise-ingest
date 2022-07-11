@@ -16,7 +16,7 @@ from configs.settings import config
 __FUNCTION_NAME__ = "ingest_linkedin"
 
 
-def main(req: func.timer.TimerRequest) -> func.HttpResponse:
+def main(timer: func.TimerRequest) -> None:
     """Ingest Linkedin
 
     Args:
@@ -26,6 +26,9 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
         func.HttpResponse: an Azure response object
     """
     init_logger(azure=True)
+
+    if timer.past_due:
+        logging.info("Timer past due...")
 
     logging.info(
         f"Starting function {__FUNCTION_NAME__} from {AZURE_FUNCTION_APP_NAME}"
@@ -49,36 +52,30 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
         result = client.launch(agent_id=source.agent)
 
         logging.info(
-            f"Downloading {source.name} data from PB container: " +
-            f"{result['containerId']}"
+            f"Downloading {source.name} data from PB container: "
+            + f"{result['containerId']}"
         )
 
         result_json = client.fetch_json_result(
             container_id=result["containerId"],
             organization_folder=source.storage,
-            result_blob=source.result_file)
-
+            result_blob=source.result_file,
+        )
         now = datetime.strftime(datetime.now(), "%Y-%m-%d")
-
         document_name = f"{source.name}_{now}.json"
-
         file_path_upload = posixpath.join(
             linkedin_raw_path,
-            document_name,)
-        logging.info(f"Uploading document with id {document_name}" +
-                     " to data lake")
+            document_name,
+        )
+        logging.info(
+            f"Uploading document with id {document_name}" + " to data lake"
+        )
         datalake_client.upload_file_content(
             content=json.dumps(result_json, default=str, ensure_ascii=False),
             file_path=file_path_upload,
         )
 
-        return func.HttpResponse(
-            status_code=200,
-            body=f"Document {document_name} was uploaded!",
-        )
+        logging.info("Success!")
 
     except Exception as e:
-        return func.HttpResponse(
-            f"Error: {e}",
-            status_code=500
-        )
+        raise e

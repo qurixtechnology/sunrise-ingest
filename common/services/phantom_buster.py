@@ -77,7 +77,7 @@ class PhantomBusterClient(RestClient):
             except KeyError as e:
                 attempts += 1
                 self.log.debug(
-                    f"Client Error: {e}. Phantom is running. Waiting {wait}" +
-                    "seconds"
+                    f"Client Error: {e}. Phantom is running. Waiting {wait}"
+                    + "seconds"
                 )
                 time.sleep(wait)
