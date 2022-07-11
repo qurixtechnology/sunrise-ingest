@@ -16,7 +16,7 @@ from configs.settings import config
 __FUNCTION_NAME__ = "ingest_linkedin"
 
 
-def main(timer: func.TimerRequest) -> func.HttpResponse:
+def main(req: func.timer.TimerRequest) -> func.HttpResponse:
     """Ingest Linkedin
 
     Args:
@@ -25,7 +25,7 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
     Returns:
         func.HttpResponse: an Azure response object
     """
-    init_logger()
+    init_logger(azure=True)
 
     logging.info(
         f"Starting function {__FUNCTION_NAME__} from {AZURE_FUNCTION_APP_NAME}"
@@ -49,7 +49,7 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
         result = client.launch(agent_id=source.agent)
 
         logging.info(
-            f"Downloading {source.name} data from PB container:" +
+            f"Downloading {source.name} data from PB container: " +
             f"{result['containerId']}"
         )
 
@@ -71,10 +71,14 @@ def main(timer: func.TimerRequest) -> func.HttpResponse:
             content=json.dumps(result_json, default=str, ensure_ascii=False),
             file_path=file_path_upload,
         )
+
         return func.HttpResponse(
             status_code=200,
             body=f"Document {document_name} was uploaded!",
         )
 
     except Exception as e:
-        raise Exception(f"Error: {e}") from e
+        return func.HttpResponse(
+            f"Error: {e}",
+            status_code=500
+        )

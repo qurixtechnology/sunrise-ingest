@@ -8,7 +8,7 @@ from common.utils.logger import init_logger
 __FUNCTION_NAME__ = "ingest_hubspot"
 
 
-def main(timer: func.TimerRequest) -> func.HttpResponse:
+def main(timer: func.TimerRequest):
     """Ingest Hubspot
 
     Args:

@@ -2,8 +2,8 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "schedule": "0 25 1 * * *",
-      "name": "timer",
+      "schedule": "0 50 19 * * *",
+      "name": "req",
       "type": "timerTrigger",
       "direction": "in"
     },
