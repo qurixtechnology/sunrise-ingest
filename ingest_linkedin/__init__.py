@@ -16,7 +16,7 @@ from configs.settings import config
 __FUNCTION_NAME__ = "ingest_linkedin"
 
 
-def main(req: func.timer.TimerRequest) -> func.HttpResponse:
+def main(timer: func.TimerRequest) -> None:
     """Ingest Linkedin
 
     Args:
@@ -26,6 +26,9 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
         func.HttpResponse: an Azure response object
     """
     init_logger(azure=True)
+
+    if timer.past_due:
+        logging.info('Timer past due...')
 
     logging.info(
         f"Starting function {__FUNCTION_NAME__} from {AZURE_FUNCTION_APP_NAME}"
@@ -39,6 +42,7 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
     linkedin_raw_path = config.RAW_LINKEDIN_DIR_PATH
 
     try:
+        
         client = PhantomBusterClient(
             api_key=config.PHANTOM_BUSTER_API_KEY,
             api_version="v2",
@@ -57,7 +61,8 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
             container_id=result["containerId"],
             organization_folder=source.storage,
             result_blob=source.result_file)
-
+        
+        
         now = datetime.strftime(datetime.now(), "%Y-%m-%d")
 
         document_name = f"{source.name}_{now}.json"
@@ -72,13 +77,7 @@ def main(req: func.timer.TimerRequest) -> func.HttpResponse:
             file_path=file_path_upload,
         )
 
-        return func.HttpResponse(
-            status_code=200,
-            body=f"Document {document_name} was uploaded!",
-        )
+        logging.info("Success!")
 
     except Exception as e:
-        return func.HttpResponse(
-            f"Error: {e}",
-            status_code=500
-        )
+        raise e
